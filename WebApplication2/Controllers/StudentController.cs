@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using University.BLogic;
-using University.DataModel;
+
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace WebApplication2.Controllers
+namespace FirstWebApplication.Controllers
+
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -13,40 +14,40 @@ namespace WebApplication2.Controllers
         private readonly IConfiguration _configuration;
         StudentManager studentManager = new StudentManager();
 
-        // Iniezione della configurazione nel costruttore
         public StudentController(IConfiguration configuration)
         {
             _configuration = configuration;
             connectionString = _configuration.GetConnectionString("SqlDbConnectionString");
         }
 
-        // GET: api/<UniversityController>
+        // GET Students
         [HttpGet]
-        public List<Student> Get()
+        public string Get()
         {
-            var students = studentManager.GetStudents(connectionString);
-            return students;
+            return studentManager.GetStudents(connectionString);
         }
 
-        // POST api/<UniversityController>
+        // ADD new Student
         [HttpPost]
-        public void Post()
+        public void Post(int Id, string FullName, DateTime DateOfBirth, int FacultyId, decimal Tuiton, decimal AvgGrades)
         {
-            studentManager.AddStudent(connectionString);
+            studentManager.AddStudent(connectionString, Id, FullName, DateOfBirth, FacultyId, Tuiton, AvgGrades);
         }
 
-        // PUT api/<UniversityController>/5
+        // UPDATE Student (tuition, avg)
         [HttpPut]
-        public void Put()
+        public void Put(string nome, decimal tuition, decimal avg)
         {
-            studentManager.UpdateStudent(connectionString);
+            studentManager.UpdateStudent(connectionString, nome, tuition, avg);
         }
 
-        // DELETE api/<UniversityController>/5
+        // DELETE Student with Id
         [HttpDelete]
-        public void Delete()
+        public void Delete(int Id)
         {
-            studentManager.DeleteStudent(connectionString);
+            studentManager.DeleteStudent(connectionString, Id);
         }
     }
 }
+
+

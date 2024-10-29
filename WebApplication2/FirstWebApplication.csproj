@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <Reference Include="University">
-      <HintPath>..\..\..\..\OneDrive\Desktop\Progetti\University2\University\bin\Debug\net8.0\University.dll</HintPath>
+      <HintPath>..\..\UniLib\UniversityLib\University\bin\Debug\net8.0\University.dll</HintPath>
     </Reference>
   </ItemGroup>
 
